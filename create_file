@@ -1,0 +1,57 @@
+! =========+=========+=========+=========+=========+=========+=========+=========+==
+! PROGRAM: CreateFile
+! TYPE	 : subroutine
+! PURPOSE: creates the output file for differents parameters
+! =========+=========+=========+=========+=========+=========+=========+=========+==
+  SUBROUTINE CreateFile(iter,hz,J1,DM1,A2,NameFile1,NameFile2)
+  USE systemvariables
+  IMPLICIT NONE
+  INTEGER :: iter
+  REAL*8 :: J1,DM1,hz,A2
+  CHARACTER(len=300):: NameFile1,NameFile2
+  CHARACTER(len=14):: Aux1,Aux2,Aux3,Aux4,Aux5,Aux6,Aux7
+  
+        !======================
+        !parameters to write the name of the files
+        WRITE(Aux1,*) N
+        WRITE(Aux2,*)iter
+        WRITE(Aux3,'(F8.4)')J1
+        WRITE(Aux4,'(F8.4)')DM1
+        WRITE(Aux5,'(F8.4)')hz
+        WRITE(Aux6,'(F8.4)')A2
+        
+        
+        Aux1=adjustl(Aux1)
+        Aux2=adjustl(Aux2)
+        Aux3=adjustl(Aux3)
+        Aux4=adjustl(Aux4)
+        Aux5=adjustl(Aux5)
+        Aux6=adjustl(Aux6)
+
+
+        !======================
+
+        !  h_ext, M, |Sz|
+        ! NameFile  is the name with all of the information about, J2,Delta (D), It, Hz
+        NameFile1='dataM/8Mag.L_'//trim(Aux1)//'_'
+        NameFile1=trim(NameFile1)//'It_'//trim(Aux2)//'_'
+        NameFile1=trim(NameFile1)//'J1_'//trim(Aux3)//'_'
+        NameFile1=trim(NameFile1)//'DM1_'//trim(Aux4)//'_'
+        NameFile1=trim(NameFile1)//'hz_'//trim(Aux5)//'_'
+        NameFile1=trim(NameFile1)//'A2_'//trim(Aux6)//'_.dat'
+        WRITE(*,'(A)')trim(NameFile1)
+        OPEN(99,FILE=trim(NameFile1),STATUS="REPLACE",ACTION="WRITE")
+        CLOSE(99)
+        
+        NameFile2='dataSz/8Sz.L_'//trim(Aux1)//'_'
+        NameFile2=trim(NameFile2)//'It_'//trim(Aux2)//'_'
+        NameFile2=trim(NameFile2)//'J1_'//trim(Aux3)//'_'
+        NameFile2=trim(NameFile2)//'DM1_'//trim(Aux4)//'_'
+        NameFile2=trim(NameFile2)//'hz_'//trim(Aux5)//'_'
+        NameFile2=trim(NameFile2)//'A2_'//trim(Aux6)//'_.dat'
+        WRITE(*,'(A)')trim(NameFile2)
+        OPEN(98,FILE=trim(NameFile2),STATUS="REPLACE",ACTION="WRITE")
+        CLOSE(98)
+
+
+  END SUBROUTINE CreateFile
