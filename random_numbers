@@ -1,0 +1,21 @@
+! =========+=========+=========+=========+=========+=========+=========+=========+==
+! PROGRAM: RANDOM /FROM MARSAGLIA/
+! TYPE	 : subroutine
+! PURPOSE: GENERATE RANDOM NUMBERS IN [-1,1]
+! COMMENT: initialize 'Idum' with (+/-)integer <2147483648=2^31
+! version: 01/04/2002
+! =========+=========+=========+=========+=========+=========+=========+=========+==
+
+  SUBROUTINE random(rand1)
+  implicit none
+  integer*4 :: Irand,Ix,Idum
+  real*8 :: delta,rand1
+  parameter (delta=4.65661287307739D-10)
+  common Idum
+        Ix=Idum
+        Idum=xor(Idum,lshift(Idum,13))
+        Idum=xor(Idum,rshift(Idum,17))
+        Idum=xor(Idum,lshift(Idum,5))
+        Irand=Ix+Idum
+        rand1=float(Irand)*delta
+  END SUBROUTINE random
