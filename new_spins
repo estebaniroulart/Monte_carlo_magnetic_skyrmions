@@ -1,0 +1,28 @@
+! =========+=========+=========+=========+=========+=========+=========+=========+==
+! PROGRAM: New spin
+! TYPE	 : subroutine
+! PURPOSE: computes components of spin 
+! version: 31/05/2011
+! =========+=========+=========+=========+=========+=========+=========+=========+==
+  SUBROUTINE NewSpin(M,Sp,deltaS)
+  USE systemvariables
+  IMPLICIT NONE
+  INTEGER ::M
+  REAL*8 :: Sp(3),deltaS
+  REAL*8 :: x,y,z,xl,yl,zl,zt,csn,sns
+222  CONTINUE
+    CALL random(x)		       
+    CALL random(y)		       
+    z=x*x+y*y			       
+    IF(z.gt.1.d0) goto 222	       
+    zl=1.d0-deltaS*z		       
+    zt=sqrt(deltaS*(1.d0+zl))	       
+    xl=x*zt			       
+    yl=y*zt			       
+    zt=sqrt(S(1,M)**2+S(2,M)**2)	       
+    csn=S(1,M)/zt			       
+    sns=S(2,M)/zt			       
+    Sp(1)=xl*csn*S(3,M)-yl*sns+zl*S(1,M)     
+    Sp(2)=xl*sns*S(3,M)+yl*csn+zl*S(2,M)     
+    Sp(3)=-xl*zt+zl*S(3,M)     
+  END SUBROUTINE NewSpin
