@@ -1,2 +1,2 @@
 # Monte_carlo_magnetic_skyrmions
-Monte Carlo simulations coding to represent magnetic skyrmions. Including exchange and Dzyaloshinskii-Moriya interactions, Zeeman energy and magnetic anisotropic coupling. 
+Monte Carlo simulations coding to represent magnetic skyrmions, including exchange and Dzyaloshinskii-Moriya interactions, Zeeman energy and magnetic anisotropic coupling.  This repository contains a modular Monte Carlo implementation for studying magnetic skyrmions in classical spin systems. It includes dedicated simulation subroutines, decorrelated random seeds for independent runs, and scripts for executing calculations. The code provides a compact demonstration of numerical methods used to investigate topological magnetic textures.
