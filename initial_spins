@@ -1,0 +1,19 @@
+! =========+=========+=========+=========+=========+=========+=========+=========+==
+! PROGRAM: spin inicial
+! TYPE	 : subroutine
+! PURPOSE: computes components of spin inicial
+! version: 31/05/2011
+! =========+=========+=========+=========+=========+=========+=========+=========+==
+  SUBROUTINE InitSpin()
+  USE systemvariables
+  IMPLICIT NONE
+  INTEGER :: M
+  REAL*8::x,y,z,zt
+  
+    DO M=1,Ns
+        S(1,M)=0.1d0
+        S(2,M)=0.05d0
+        S(3,M)=DSQRT(1.0d0-S(1,M)**2-S(2,M)**2)
+    ENDDO !M    
+    WRITE(*,*)'-----------------'
+  END SUBROUTINE InitSpin
